@@ -1,50 +1,3 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-//Prompts for user choice
-
-var length = window.prompt("How many characters?");
-console.log(length);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //prompt how many characters
 
 
@@ -65,3 +18,127 @@ console.log(length);
 //var password =turn array into strong using .tostring 
 
 //return password 
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", generatePassword);
+
+//Variables 
+var userChoices;
+var confirmLower;
+var confirmUpper;
+var confirmNumeric;
+var confirmSpecial;
+var choice;
+var passwordText = document.querySelector("#password");
+
+//Character arrays
+var lowerCase = ("abcdefghijklmnopqrstuvwxyz");
+console.log(lowerCase);
+var upperCase = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+console.log(upperCase);
+var numeric = ("1234567890");
+console.log(numeric);
+var special = ("!#$%&()*,-./:;<=>?@[']^_`{|}~' ");
+console.log(special);
+
+
+function generatePassword(){
+  //Prompts the user to pick a userChoices 
+  var userChoices = window.prompt("How many characters? Choose between 8 and 128.");
+    if (!userChoices) {
+      alert("This needs a value");
+  // Asks the user whether they would like these characters or not
+  } else {
+  confirmLower = window.confirm("Would you like Lowercase characters?");
+  confirmUpper = window.confirm("Would you like Uppercase characters?");
+  confirmNumeric = window.confirm("Would you like Numeric characters?");
+  confirmSpecial = window.confirm("Would you like Special characters?");
+  }
+  choiceArray();
+  passwordText.value = randomize();
+
+//   console.log("User Choices", userChoices);
+//   console.log("Lowercase", confirmLower);
+//   console.log("Uppercase", confirmUpper);
+//   console.log("Numeric", confirmNumeric);
+//   console.log("Special", confirmSpecial);
+//   console.log("Chosen",choice);
+};
+function choiceArray() {
+  if (confirmLower && confirmUpper && confirmNumeric && confirmSpecial) {
+    choice = lowerCase.concat(upperCase, special, numeric);
+  //3 chosen
+    }else if (confirmLower && confirmUpper && confirmNumeric){
+      choice = lowerCase.concat(upperCase, numeric);
+    }else if (confirmUpper && confirmNumeric && confirmSpecial){
+      choice = upperCase.concat(special, numeric);
+    }else if (confirmLower && confirmNumeric && confirmSpecial){
+      choice = lowerCase.concat(numeric, special)
+    }else if (confirmLower && confirmUpper && confirmSpecial){
+      choice = lowerCase.concat(upperCase, special);
+    //2 chosen
+    }else if (confirmLower && confirmUpper){
+      choice = lowerCase.concat(upperCase);
+    }else if (confirmLower && confirmNumeric){
+      choice = lowerCase.concat(numeric);
+    }else if (confirmLower && confirmSpecial){
+      choice = lowercase.concat(special);
+    }else if (confirmUpper && confirmNumeric){
+      choice = upperCase.concat(numeric);
+    }else if (confirmUpper && confirmSpecial){
+      choice = upperCase.concat(special);
+    }else if (confirmSpecial && confirmNumeric){
+      choice = special.concat(numeric);
+    //1 Chosen
+    }else if (confirmLower) {
+      choice = lowerCase;
+    }else if (confirmUpper) {
+      choice = upperCase;
+    }else if (confirmNumeric){
+      choice = numeric;
+    }else if (confirmSpecial){
+      choice = special;
+    };
+}
+
+function randomize() {
+  var result = "";
+  // console.log(CHARACTERLENGTH);
+  // console.log(choice.length);
+  for (var index = 0; index < choice.length; index++) {
+    result += choice.charAt(Math.floor(Math.random() * choice.length));
+  }
+  console.log("randomize", result);
+  console.log(result.toString().length);
+  return result;
+}
+
+
+
+//if the return value is greater than 93 add enough characters to make it 128
+
+
+
+
+// for (var i = o; i < userChoices; i++) {
+//   var Picked = choice[Math.floor(math.random * choice.userChoices)];
+// }
+
+
+// generatePassword();
+
+
+
+
+
+
+
+
+
+
+
+
